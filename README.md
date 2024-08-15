@@ -1,6 +1,6 @@
 # Projeto Compra de Pizzas 
 
-Projeto feito durante o curso de Javascript - B7Web. <br/>
+Projeto desenvolvido durante a matéria de Desenvolvimento WEB - secont attempt. <br/>
 Possui o layout responsivo.
 
 ## Linguagens utilizadas
