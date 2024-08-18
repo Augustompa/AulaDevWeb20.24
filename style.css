@@ -390,6 +390,7 @@ h1 {
     .pizzaBig img {
         width: 75%;
         height: auto;
+        margin-right: 20px;
     }
 
     .pizzaInfo h1 {
