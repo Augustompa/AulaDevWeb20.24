@@ -162,6 +162,7 @@ h1 {
     flex:1;
     font-family:'Hepta Slab', Helvetica, Arial;
     padding-bottom:50px;
+    margin-left: 3rem;
 }
 .pizzaInfo h1 {
     margin-top:50px;
