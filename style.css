@@ -416,6 +416,7 @@ h1 {
     }
 
     .pizzaInfo--cancelButton {
+        margin-left: 10rem;
         display:none;
     }
     .pizzaInfo--cancelMobileButton {
