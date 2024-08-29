@@ -22,5 +22,5 @@ Você pode selecionar a pizza no carrinho de compras, bem como selecionar o tama
 No carrinho de compras, há a possibilidade de mudar as quantidades, nele também é informado o valor total da compra e o desconto.
 
 
-
+link do FIGMA: https://www.figma.com/design/mggMcBOIjCO0prFTSQmUXQ/Figma-basics?node-id=601-445&t=yBt128laggGsrd7m-1
 
