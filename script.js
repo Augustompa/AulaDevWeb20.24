@@ -124,7 +124,7 @@ c('.cart--finalizar').addEventListener('click', ()=>{
 });
 
 c('.menu-openner').addEventListener('click', ()=>{
-    if (!cart.isEmpty()){
+    if (cart.length > 0){
         c('aside').style.left = '0';    //abre aside MOBILE
     }
 });
@@ -139,7 +139,7 @@ function updateCart(){
 
     //Se tiver itens no carrinho -> mostrar o carrinho
     //Se não -> não mostrar
-    if (cart.isEmpty()){
+    if (cart.length == 0){
         c('aside').classList.remove('show');
         c('aside').style.left = '100vw';    //MOBILE
     } else {
