@@ -131,11 +131,19 @@ c('.menu-closer').addEventListener('click', ()=>{
 
 function updateCart(){
 
+
+
     c('.menu-openner span').innerHTML = cart.length;    //Carrinho de compras no MOBILE
 
     //Se tiver itens no carrinho -> mostrar o carrinho
     //Se não -> não mostrar
-    if (cart.length > 0){
+    if (cart.length.isEmpty()){
+
+        c('aside').classList.remove('show');
+        c('aside').style.left = '100vw';    //MOBILE
+        
+    } else {
+
         c('aside').classList.add('show');
         c('.cart').innerHTML = ''; //zerar as listas 
 
@@ -185,16 +193,12 @@ function updateCart(){
             c('.cart').append(cartItem);
         }
 
-            desconto = subtotal * 0.1; //Desconto de 10%
-            total = subtotal - desconto;
-        
-            //Como é o último item do span usa-se last-child
-            c('.subtotal span:last-child').innerHTML = `R$ ${subtotal.toFixed(2)}`;
-            c('.desconto span:last-child').innerHTML = `R$ ${desconto.toFixed(2)}`;
-            c('.total span:last-child').innerHTML = `R$ ${total.toFixed(2)}`;
-
-    } else {
-        c('aside').classList.remove('show');
-        c('aside').style.left = '100vw';    //MOBILE
+        desconto = subtotal * 0.1; //Desconto de 10%
+        total = subtotal - desconto;
+    
+        //Como é o último item do span usa-se last-child
+        c('.subtotal span:last-child').innerHTML = `R$ ${subtotal.toFixed(2)}`;
+        c('.desconto span:last-child').innerHTML = `R$ ${desconto.toFixed(2)}`;
+        c('.total span:last-child').innerHTML = `R$ ${total.toFixed(2)}`;
     }
 }
