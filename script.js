@@ -46,7 +46,7 @@ pizzaJson.map((item, index)=>{
         c('.pizzaWindowArea').style.opacity = 0;
         setTimeout(()=>{
             c('.pizzaWindowArea').style.opacity = 1;
-        }, 200);
+        }, 100);
 
         //Abrir o modal
         c('.pizzaWindowArea').style.display = 'flex';
@@ -131,17 +131,15 @@ c('.menu-closer').addEventListener('click', ()=>{
 
 function updateCart(){
 
-
-
     c('.menu-openner span').innerHTML = cart.length;    //Carrinho de compras no MOBILE
 
     //Se tiver itens no carrinho -> mostrar o carrinho
     //Se não -> não mostrar
-    if (cart.length.isEmpty()){
+    if (cart.isEmpty()){
 
         c('aside').classList.remove('show');
         c('aside').style.left = '100vw';    //MOBILE
-        
+
     } else {
 
         c('aside').classList.add('show');
