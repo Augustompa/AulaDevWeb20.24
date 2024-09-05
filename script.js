@@ -119,8 +119,12 @@ c('.pizzaInfo--addButton').addEventListener('click', ()=>{
     closeModal();
 });
 
+c('.cart--finalizar').addEventListener('click', ()=>{
+    console.log('ADICIONAR BACKEND');
+});
+
 c('.menu-openner').addEventListener('click', ()=>{
-    if (cart.length > 0 ){
+    if (!cart.isEmpty()){
         c('aside').style.left = '0';    //abre aside MOBILE
     }
 });
@@ -136,12 +140,9 @@ function updateCart(){
     //Se tiver itens no carrinho -> mostrar o carrinho
     //Se não -> não mostrar
     if (cart.isEmpty()){
-
         c('aside').classList.remove('show');
         c('aside').style.left = '100vw';    //MOBILE
-
     } else {
-
         c('aside').classList.add('show');
         c('.cart').innerHTML = ''; //zerar as listas 
 
