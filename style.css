@@ -338,6 +338,20 @@ h1 {
     border:2px solid #63f77c;
     transition: all ease .2s;
 }
+.cart--cancelar {
+    padding:20px 30px;
+    border-radius:20px;
+    background-color:lightsalmon;
+    color:#FFF;
+    cursor:pointer;
+    text-align:center;
+    margin-top:20px;
+    border:2px solid lightsalmon;
+    transition: all ease .2s;
+}
+.cart--cancelar:hover {
+    background-color:salmon;
+}
 .cart--finalizar:hover {
     background-color:#35af4a;
 }
