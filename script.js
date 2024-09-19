@@ -125,6 +125,7 @@ c('.cart--finalizar').addEventListener('click', ()=>{
 
 c('.cart--cancelar').addEventListener('click', ()=>{
     cart = [];
+    updateCart();
 });
 
 c('.menu-openner').addEventListener('click', ()=>{
