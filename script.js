@@ -123,6 +123,10 @@ c('.cart--finalizar').addEventListener('click', ()=>{
     console.log('ADICIONAR BACKEND');
 });
 
+c('.cart--cancelar').addEventListener('click', ()=>{
+    cart = [];
+});
+
 c('.menu-openner').addEventListener('click', ()=>{
     if (cart.length > 0){
         c('aside').style.left = '0';    //abre aside MOBILE
