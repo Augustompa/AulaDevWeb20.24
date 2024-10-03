@@ -1,4 +1,5 @@
 //Função para substituir o querySelector
+
 const c = (el)=>document.querySelector(el);
 const c_all = (el)=>document.querySelectorAll(el);
 
@@ -117,6 +118,9 @@ c('.pizzaInfo--addButton').addEventListener('click', ()=>{
 
     updateCart();
     closeModal();
+});
+c('.pizzaFeedback--Button').addEventListener('click', ()=>{
+    window.location="form.html";
 });
 
 c('.menu-openner').addEventListener('click', ()=>{
