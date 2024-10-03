@@ -120,7 +120,8 @@ c('.pizzaInfo--addButton').addEventListener('click', ()=>{
     closeModal();
 });
 c('.pizzaFeedback--Button').addEventListener('click', ()=>{
-    window.location="form.html";
+    window.location.assign("form.html");
+
 });
 
 c('.menu-openner').addEventListener('click', ()=>{
