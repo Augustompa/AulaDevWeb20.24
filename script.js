@@ -58,7 +58,7 @@ pizzaJson.map((item, index)=>{
 });
 
 //Eventos do MODAL    
-//Função que fecha o modal (inverso do de abrir)
+//Função que fecha o modal
 //Não há necessidade de parâmetro pois se trata de uma div
 function closeModal(){            
     c('.pizzaWindowArea').style.opacity = 0;
