@@ -124,6 +124,10 @@ c('.pizzaFeedback--Button').addEventListener('click', ()=>{
 
 });
 
+c('.Form-return').addEventListener('click', ()=>{
+    window.location.assign("index.html");
+});
+
 c('.menu-openner').addEventListener('click', ()=>{
     if (cart.length > 0 ){
         c('aside').style.left = '0';    //abre aside MOBILE
