@@ -216,11 +216,12 @@ function updateCart(){
 
 function insertPizza()
 {
-    fetch('http://localhost:5000/insert', {
+    fetch('http://localhost:5000/insert',  {
         method: 'POST',
         headers: {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'GET,PUT,POST,OPTIONS',
+            'Access-Control-Allow-Headers':'Content-Type',
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -229,7 +230,7 @@ function insertPizza()
             Valor: 35.99,
             Tamanho: 'M'
         })
-      })
+      }),
       .then(response => response.json())
       .then(data => console.log(data))
       .catch(error => console.error(error));
