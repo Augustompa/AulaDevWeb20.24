@@ -1,4 +1,6 @@
 //Função para substituir o querySelector
+
+
 const c = (el)=>document.querySelector(el);
 const c_all = (el)=>document.querySelectorAll(el);
 
@@ -217,6 +219,8 @@ function insertPizza()
     fetch('http://localhost:5000/insert', {
         method: 'POST',
         headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET,PUT,POST,OPTIONS',
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
