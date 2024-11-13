@@ -1,5 +1,4 @@
 //Função para substituir o querySelector
-
 const c = (el)=>document.querySelector(el);
 const c_all = (el)=>document.querySelectorAll(el);
 
@@ -124,6 +123,11 @@ c('.pizzaFeedback--Button').addEventListener('click', ()=>{
 
 });
 
+c('.cart--finalizar').addEventListener('click', ()=>{
+    insertPizza();
+});
+
+
 c('.Form-return').addEventListener('click', ()=>{
     window.location.assign("index.html");
 });
@@ -206,4 +210,23 @@ function updateCart(){
         c('aside').classList.remove('show');
         c('aside').style.left = '100vw';    //MOBILE
     }
+}
+
+function insertPizza()
+{
+    fetch('http://localhost:5000/insert', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            Nome: 'teste',
+            Sabor: 'calabresa',
+            Valor: 35.99,
+            Tamanho: 'M'
+        })
+      })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error(error));
 }
