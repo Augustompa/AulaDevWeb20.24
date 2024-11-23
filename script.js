@@ -216,23 +216,26 @@ function updateCart(){
 
 function insertPizza()
 {
-    fetch('https://ominous-meme-rpgg69w5jrvh59q5-5000.app.github.dev/insert',{
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json',
-          'accept':'*/*',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
-        },
-        body: {
-            Nome: 'teste',
-            Sabor: 'calabresa',
-            Valor: 35.99,
-            Tamanho: 'M'
-        }
-      })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.log('ERRO >>>>>',error));
+
+    console.log('CARRINHO >>> ', JSON.parse(JSON.stringify(cart)));
+    
+    // fetch('https://ominous-meme-rpgg69w5jrvh59q5-5000.app.github.dev/insert',{
+    //     method: 'POST',
+    //     mode: 'no-cors',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       'accept':'*/*',
+    //       'Access-Control-Allow-Origin': '*',
+    //       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
+    //     },
+    //     body: {
+    //         Nome: 'teste',
+    //         Sabor: 'calabresa',
+    //         Valor: 35.99,
+    //         Tamanho: 'M'
+    //     }
+    //   })
+    //   .then(response => response.json())
+    //   .then(data => console.log(data))
+    //   .catch(error => console.log('ERRO >>>>>',error));
 }
