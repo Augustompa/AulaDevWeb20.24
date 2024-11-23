@@ -218,11 +218,13 @@ function insertPizza()
 {
     fetch('https://ominous-meme-rpgg69w5jrvh59q5-5000.app.github.dev/insert',{
         method: 'POST',
+        mode: 'no-cors',
         headers: {
 
           'Content-Type': 'application/json',
           'accept':'application/json',
-          'Access-Control-Allow-Origin': '*' 
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
         },
         body: JSON.stringify({
             Nome: 'teste',
