@@ -216,7 +216,7 @@ function updateCart(){
 
 function insertPizza()
 {
-    fetch('http://localhost:5000/insert',   {
+    fetch('https://ominous-meme-rpgg69w5jrvh59q5-5000.app.github.dev/insert',   {
         mode: 'no-cors',
         method: 'POST',
         headers: {
