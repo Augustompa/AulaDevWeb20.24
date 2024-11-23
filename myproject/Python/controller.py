@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import sqlite3
+import json
 
 app = Flask(__name__)
 
@@ -21,12 +22,14 @@ c.execute('''CREATE TABLE IF NOT EXISTS pizzas (
 def adicionar_usuario():
 
     data = request.get_json()
-    varNome = data.get('Nome')
-    varSabor = data.get('Sabor')
-    varTamanho = data.get('Tamanho')
-    varValor = data.get('Valor')  
+    cart = request.get_json()
 
-    c.execute(f"INSERT INTO pizzas (nome,sabor,tamanho,valor) VALUES (?, ?, ?, ?)", (varNome, varSabor, varTamanho, varValor))
+    for itemCart in cart:
+        varSabor = itemCart.item.name
+        varTamanho = itemCart.size
+        varValor = (itemCart.item.price)*itemCart.qt
+    
+    c.execute(f"INSERT INTO pizzas (nome,sabor,tamanho,valor) VALUES (?, ?, ?, ?)", (varSabor, varTamanho, varValor))
     conn.commit()
 
     return jsonify({'message': 'Pizza adicionada com sucesso!'})
