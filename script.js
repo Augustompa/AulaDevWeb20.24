@@ -229,7 +229,7 @@ function insertPizza()
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
         },
-        body: JSON.parse(cart)
+        body: JSON.stringify(cart)
       })
       .then(response => response.json())
       .then(data => console.log(data))
