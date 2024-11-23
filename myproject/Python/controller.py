@@ -4,7 +4,7 @@ import sqlite3
 app = Flask(__name__)
 
 # Conexão com o banco de dados SQLite
-conn = sqlite3.connect('pizzariaAndorinhas.db')
+conn = sqlite3.connect('pizzariaAndorinhas.db', check_same_thread=False)
 c = conn.cursor()
 
 # Criando a tabela se não existir
