@@ -220,9 +220,8 @@ function insertPizza()
         method: 'POST',
         mode: 'no-cors',
         headers: {
-
           'Content-Type': 'application/json',
-          'accept':'application/json',
+          'accept':'*/*',
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
         },
