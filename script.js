@@ -100,7 +100,7 @@ c('.pizzaInfo--addButton').addEventListener('click', ()=>{
     //console.log("Quantidade: "+modalQt);
 
     //Identificador para juntar pizzas de tamanhos iguais
-    let identifier = pizzaJson[modalKey].id+'@'+size;
+    let identifier = pizzaJson[modalKey].id+pizzaJson[modalKey].name+pizzaJson[modalKey].price
 
     //Dos identifiers do carrinho qual tem o mesmo identifier
     let key = cart.findIndex((item)=>item.identifier == identifier);
