@@ -220,7 +220,6 @@ function insertPizza()
 
     console.log('CARRINHO >>> ', JSON.parse(JSON.stringify(cart)));
     let cartItems;
-    cartItems.append()
     fetch('https://ominous-meme-rpgg69w5jrvh59q5-5000.app.github.dev/insert',{
         method: 'POST',
         mode: 'no-cors',
