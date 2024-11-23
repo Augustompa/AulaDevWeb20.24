@@ -226,12 +226,12 @@ function insertPizza()
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
         },
-        body: JSON.stringify({
+        body: {
             Nome: 'teste',
             Sabor: 'calabresa',
             Valor: 35.99,
             Tamanho: 'M'
-        })
+        }
       })
       .then(response => response.json())
       .then(data => console.log(data))
