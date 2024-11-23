@@ -235,5 +235,5 @@ function insertPizza()
       })
       .then(response => response.json())
       .then(data => console.log(data))
-      .catch(error => console.error(error));
+      .catch(error => console.log('ERRO >>>>>',error));
 }
