@@ -113,6 +113,7 @@ c('.pizzaInfo--addButton').addEventListener('click', ()=>{
             identifier,
             id: pizzaJson[modalKey].id,
             size,
+            item: pizzaJson[modalKey],
             qt: modalQt
         });
     }
