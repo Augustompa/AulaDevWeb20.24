@@ -227,7 +227,8 @@ function insertPizza()
           'Content-Type': 'application/json',
           'accept':'*/*',
           'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type'
         },
         body: JSON.stringify(cart)
       })
