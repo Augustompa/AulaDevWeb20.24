@@ -21,7 +21,6 @@ c.execute('''CREATE TABLE IF NOT EXISTS pizzas (
 @app.route('/insert', methods=['POST'])
 def adicionar_usuario():
 
-    data = request.get_json()
     cart = request.get_json()
 
     for itemCart in cart:
