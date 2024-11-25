@@ -58,3 +58,5 @@ def get_pizzas():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+#FLASK_APP=controller.py FLASK_DEBUG=true flask run
