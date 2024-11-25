@@ -7,6 +7,7 @@ Possui o layout responsivo.
  * Javascript
  * Html
  * Css
+ * Python
 #
 ![image](https://user-images.githubusercontent.com/91427306/162651022-30ec63a8-5b2d-427e-9b3c-6b93a8b6d9e8.png)
 

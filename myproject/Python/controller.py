@@ -28,8 +28,8 @@ def adicionar_usuario():
         varSabor = itemCart.item.name
         varTamanho = itemCart.size
         varValor = (itemCart.item.price)*itemCart.qt
+        c.execute("INSERT INTO pizzas (nome,sabor,tamanho,valor) VALUES (?, ?, ?, ?)", (varSabor, varTamanho, varValor))
     
-    c.execute(f"INSERT INTO pizzas (nome,sabor,tamanho,valor) VALUES (?, ?, ?, ?)", (varSabor, varTamanho, varValor))
     conn.commit()
 
     return jsonify({'message': 'Pizza adicionada com sucesso!'})
