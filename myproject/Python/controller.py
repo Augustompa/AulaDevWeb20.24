@@ -34,11 +34,10 @@ def adicionar_usuario():
 
     return jsonify({'message': 'Pizza adicionada com sucesso!'})
 
-# @app.route('/read/<string:table>', methods=['GET'])
-# def read_data(table):
-#     columns = request.args.get('columns')
-#     data = db.read_data(table, columns.split(',')) if columns else db.read_data(table)
-#     return jsonify(data)
+@app.route('/read', methods=['GET'])
+def get_pizzas():
+    data = c.execute('SELECT * FROM pizzas')
+    return jsonify({data})
 
 # @app.route('/update/<string:table>', methods=['PUT'])
 # def update_data(table):
