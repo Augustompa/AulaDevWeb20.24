@@ -1,10 +1,10 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import sqlite3
 
 app = Flask(__name__)
 
 # Conexão com o banco de dados SQLite
-conn = sqlite3.connect('pizzariaAndorinhas.db')
+conn = sqlite3.connect('pizzaria.db', check_same_thread=False)
 c = conn.cursor()
 
 # Criando a tabela se não existir
@@ -17,24 +17,43 @@ c.execute('''CREATE TABLE IF NOT EXISTS pizzas (
 
 )''')
 
+
 @app.route('/insert', methods=['POST'])
 def adicionar_usuario():
-    data = request.get_json()
-    varNome = data.get('Nome')
-    varSabor = data.get('Sabor')
-    varTamanho = data.get('Tamanho')
-    varValor = data.get('Valor')  
 
-    c.execute(f"INSERT INTO pizzas (nome,sabor,tamanho,valor) VALUES (?, ?, ?, ?)", (varNome, varSabor, varTamanho, varValor))
-    conn.commit()
+    try:
+        data = request.get_json()
+        print(data)
+        varNome = data.get('Nome')
+        varSabor = data.get('Sabor')
+        varTamanho = data.get('Tamanho')
+        varValor = data.get('Valor')  
+    
+        c.execute("INSERT INTO pizzas (nome,sabor,tamanho,valor) VALUES (?, ?, ?, ?)", (varNome, varSabor, varTamanho, varValor))
+        c.commit()
+        msg = "Record successfully added to database"
+            
+    except sqlite3.IntegrityError as e:
+        print("ENTROU NO ROLLBACK")
+        c.rollback()
+        msg = "Error adding record: {e}"
 
-    return jsonify({'message': 'Pizza adicionada com sucesso!'})
+    finally:
+        c.close()
+        return jsonify({'message': 'Pizza adicionada com sucesso!',
+                        'statusCode': 200
+                        })
 
-# @app.route('/read/<string:table>', methods=['GET'])
-# def read_data(table):
-#     columns = request.args.get('columns')
-#     data = db.read_data(table, columns.split(',')) if columns else db.read_data(table)
-#     return jsonify(data)
+
+@app.route('/read', methods=['GET'])
+def get_pizzas():
+    
+    with sqlite3.connect('pizzaria.db') as con:
+        cur = con.cursor()
+    data = cur.execute('SELECT * FROM pizzas')
+    return jsonify({
+            "data": data.fetchall()
+    })
 
 # @app.route('/update/<string:table>', methods=['PUT'])
 # def update_data(table):
@@ -54,4 +73,4 @@ def adicionar_usuario():
 #     return jsonify({'message': 'Data deleted successfully'})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5000, host='localhost',debug=True)

@@ -216,7 +216,7 @@ function updateCart(){
 
 function insertPizza()
 {
-    fetch('http://localhost:5000/insert',   {
+    fetch('http://localhost:5000/insert',{
         mode: 'no-cors',
         method: 'POST',
         headers: {
