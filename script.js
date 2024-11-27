@@ -10,6 +10,7 @@ let modalKey = 0;   //identificação de qual pizza está selecionada
 
 //Mapear as pizzas
 //Clonar a estrutura e preencher as informações das pizzas
+getPizzas();
 //Listagens das pizzas
 
 //Eventos do MODAL    
