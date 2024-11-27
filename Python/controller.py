@@ -5,7 +5,11 @@ import sqlite3
 import json
 
 app = Flask(__name__)
-cors = CORS(app) 
+cors = CORS(app, resource={
+    r"/*":{
+        "origins":"*"
+    }
+})
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 # Conexão com o banco de dados SQLite
@@ -82,10 +86,7 @@ def get_pizzas():
         # Convert the list of dictionaries to JSON and print it
         json_result = json.dumps(result)
         print(json_result)
-        response = make_response()
-        response.headers.add("Access-Control-Allow-Origin", "*")
-        response.headers.add('Access-Control-Allow-Headers', "*")
-        response.headers.add('Access-Control-Allow-Methods', "*")
+       
     return json_result
     
 # @app.route('/update/<string:id>', methods=['PUT'])
@@ -106,6 +107,7 @@ def get_pizzas():
 #     where_value = data.get('where_value')
 #     db.delete_data(table, where_column, where_value)
 #     return jsonify({'message': 'Data deleted successfully'})
-
+        
+        
 if __name__ == '__main__':
     app.run(port=5000, host='localhost',debug=True)
