@@ -181,10 +181,7 @@ function getPizzas()
           'Content-Type': 'application/json'
         }
       })
-      .then(response =>{
-        console.log('PRIMEIRO RESPONSE >>>', response)
-        return response.json();
-      }).then(responseJson =>{
+      .then(response =>response.json()).then(responseJson =>{
         preencherPizzas(responseJson);
       })
       .catch(error => console.log('EXCEPTION >>>>',error));
