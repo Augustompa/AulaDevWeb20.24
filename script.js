@@ -182,8 +182,9 @@ function getPizzas()
         }
       })
       .then(response =>{
-        console.log('RETORNO DO BACK >>>>> ',response);
-        preencherPizzas(response)
+        return response.json();
+      }).then(responseJson =>{
+        preencherPizzas(responseJson);
       })
       .catch(error => console.error(error));
 
