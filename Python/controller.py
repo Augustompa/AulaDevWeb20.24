@@ -61,12 +61,24 @@ def adicionar_pizzas():
 def get_pizzas():
     
     with sqlite3.connect('pizzaria.db') as con:
+        con.row_factory = sqlite3.Row
+        
         cur = con.cursor()
-    data = cur.execute('SELECT img,price,sabor, sizes, description FROM pizzas')
-    return jsonify({
-            "pizzas": data.fetchall()
-    })
+        data = cur.execute('SELECT * FROM pizzas')
+        rows = cur.fetchall()
+        result = []
+        for row in rows:
+            d = {}
+            for i, col in enumerate(cur.description):
+                d[col[0]] = row[i]
+            result.append(d)
 
+        # Convert the list of dictionaries to JSON and print it
+        json_result = json.dumps(result)
+        print(json_result)
+
+    return json_result
+    
 # @app.route('/update/<string:id>', methods=['PUT'])
 # def update_data(table):
 #     data = request.get_json()
