@@ -85,9 +85,9 @@ c('.cart--finalizar').addEventListener('click', ()=>{
 });
 
 
-c('.Form-return').addEventListener('click', ()=>{
-    window.location.assign("index.html");
-});
+// c('.Form-return').addEventListener('click', ()=>{
+//     window.location.assign("index.html");
+// });
 
 c('.menu-openner').addEventListener('click', ()=>{
     if (cart.length > 0 ){
