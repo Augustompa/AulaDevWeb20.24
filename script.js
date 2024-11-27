@@ -182,6 +182,7 @@ function getPizzas()
         }
       })
       .then(response =>{
+        console.log('PRIMEIRO RESPONSE >>>', response)
         return response.json();
       }).then(responseJson =>{
         preencherPizzas(responseJson);
