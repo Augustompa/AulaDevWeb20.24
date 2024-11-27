@@ -182,7 +182,7 @@ function getPizzas()
         }
       })
       .then(response =>response.json()).then(responseJson =>{
-        preencherPizzas(responseJson);
+        preencherPizzas(JSON.stringify(responseJson));
       })
       .catch(error => console.log('EXCEPTION >>>>',error));
 
