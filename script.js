@@ -11,52 +11,6 @@ let modalKey = 0;   //identificação de qual pizza está selecionada
 //Mapear as pizzas
 //Clonar a estrutura e preencher as informações das pizzas
 //Listagens das pizzas
-pizzaJson.map((item, index)=>{
-    let pizzaItem = c('.models .pizza-item').cloneNode(true);
-
-    //Setar um atributo para saber o id de cada pizza 
-    pizzaItem.setAttribute('data-key', index);
-
-    //Adicionar informações das pizzas
-    pizzaItem.querySelector('.pizza-item--img img').src = item.img;
-    pizzaItem.querySelector('.pizza-item--price').innerHTML = `R$ ${item.price.toFixed(2)}`;
-    pizzaItem.querySelector('.pizza-item--name').innerHTML = item.name;
-    pizzaItem.querySelector('.pizza-item--desc').innerHTML = item.description;
-
-    //Evento para clicar e abrir o modal
-    pizzaItem.querySelector('a').addEventListener('click', (e)=>{
-        e.preventDefault(); //Evitar que ao clicar a página atualize
-        let key = e.target.closest('.pizza-item').getAttribute('data-key');      //Necessário sair do elemento 'a' e ir para o elemento 'pizza-item'
-        modalQt = 1; //Sempre que abrir o modal a quantidade é 1 por padrão                                            //closest serve para achar o elemento mais próximo
-        modalKey = key;
-        //Preencher as informações das pizzas no modal
-        c('.pizzaBig img').src = pizzaJson[key].img;
-        c('.pizzaInfo h1').innerHTML = pizzaJson[key].name;
-        c('.pizzaInfo--desc').innerHTML = pizzaJson[key].description;
-        c('.pizzaInfo--actualPrice').innerHTML = `R$ ${pizzaJson[key].price.toFixed(2)}`;
-        c('.pizzaInfo--size.selected').classList.remove('selected'); //Remove o item que está selecionado 
-        c_all('.pizzaInfo--size').forEach((size, sizeIndex)=>{       //Tamanho das pizzas
-            if(sizeIndex == 2 ) {
-                size.classList.add('selected');     //Ele deixa o tamanho grande definido por padrão
-            }
-            size.querySelector('span').innerHTML = pizzaJson[key].sizes[sizeIndex]; //Necessário acessar cada um dos indexs.
-        });
-
-        c('.pizzaInfo--qt').innerHTML = modalQt;
-        
-        //Animação ao abrir modal (já configurado no css)
-        c('.pizzaWindowArea').style.opacity = 0;
-        setTimeout(()=>{
-            c('.pizzaWindowArea').style.opacity = 1;
-        }, 200);
-
-        //Abrir o modal
-        c('.pizzaWindowArea').style.display = 'flex';
-    });
-
-    c('.pizza-area').append( pizzaItem );
-    //Não é utilizado o innerHTML pois ele faz uma substituição, já o append adiciona
-});
 
 //Eventos do MODAL    
 //Função que fecha o modal
@@ -212,6 +166,75 @@ function updateCart(){
         c('aside').classList.remove('show');
         c('aside').style.left = '100vw';    //MOBILE
     }
+}
+
+function getPizzas()
+{
+    fetch('https://65s6ng97-5000.brs.devtunnels.ms/read',{
+        mode: 'no-cors',
+        method: 'GET',
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET,PUT,POST,OPTIONS',
+            'Access-Control-Allow-Headers':'Content-Type',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        preencherPizzas(data)
+      })
+      .catch(error => console.error(error));
+
+}
+
+function preencherPizzas(pizzaJson){
+    pizzaJson.map((item, index)=>{
+        let pizzaItem = c('.models .pizza-item').cloneNode(true);
+    
+        //Setar um atributo para saber o id de cada pizza 
+        pizzaItem.setAttribute('data-key', index);
+    
+        //Adicionar informações das pizzas
+        pizzaItem.querySelector('.pizza-item--img img').src = item.img;
+        pizzaItem.querySelector('.pizza-item--price').innerHTML = `R$ ${item.price.toFixed(2)}`;
+        pizzaItem.querySelector('.pizza-item--name').innerHTML = item.name;
+        pizzaItem.querySelector('.pizza-item--desc').innerHTML = item.description;
+    
+        //Evento para clicar e abrir o modal
+        pizzaItem.querySelector('a').addEventListener('click', (e)=>{
+            e.preventDefault(); //Evitar que ao clicar a página atualize
+            let key = e.target.closest('.pizza-item').getAttribute('data-key');      //Necessário sair do elemento 'a' e ir para o elemento 'pizza-item'
+            modalQt = 1; //Sempre que abrir o modal a quantidade é 1 por padrão                                            //closest serve para achar o elemento mais próximo
+            modalKey = key;
+            //Preencher as informações das pizzas no modal
+            c('.pizzaBig img').src = pizzaJson[key].img;
+            c('.pizzaInfo h1').innerHTML = pizzaJson[key].name;
+            c('.pizzaInfo--desc').innerHTML = pizzaJson[key].description;
+            c('.pizzaInfo--actualPrice').innerHTML = `R$ ${pizzaJson[key].price.toFixed(2)}`;
+            c('.pizzaInfo--size.selected').classList.remove('selected'); //Remove o item que está selecionado 
+            c_all('.pizzaInfo--size').forEach((size, sizeIndex)=>{       //Tamanho das pizzas
+                if(sizeIndex == 2 ) {
+                    size.classList.add('selected');     //Ele deixa o tamanho grande definido por padrão
+                }
+                size.querySelector('span').innerHTML = pizzaJson[key].sizes[sizeIndex]; //Necessário acessar cada um dos indexs.
+            });
+    
+            c('.pizzaInfo--qt').innerHTML = modalQt;
+            
+            //Animação ao abrir modal (já configurado no css)
+            c('.pizzaWindowArea').style.opacity = 0;
+            setTimeout(()=>{
+                c('.pizzaWindowArea').style.opacity = 1;
+            }, 200);
+    
+            //Abrir o modal
+            c('.pizzaWindowArea').style.display = 'flex';
+        });
+    
+        c('.pizza-area').append( pizzaItem );
+        //Não é utilizado o innerHTML pois ele faz uma substituição, já o append adiciona
+    });
 }
 
 function insertPizza()

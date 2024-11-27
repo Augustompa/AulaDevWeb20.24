@@ -1,5 +1,6 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify
 import sqlite3
+import json
 
 app = Flask(__name__)
 
@@ -7,39 +8,50 @@ app = Flask(__name__)
 conn = sqlite3.connect('pizzaria.db', check_same_thread=False)
 c = conn.cursor()
 
-# Criando a tabela se não existir
+# Criando a tabela de pizzas se não existir
 c.execute('''CREATE TABLE IF NOT EXISTS pizzas (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nome TEXT,
-    sabor INTEGER,
-    tamanho TEXT,
-    valor DOUBLE
+    img TEXT,
+    price DOUBLE,
+    sabor TEXT,
+    sizes ENUM,
+    description TEXT
 
 )''')
 
 
 @app.route('/insert', methods=['POST'])
-def adicionar_usuario():
+def adicionar_pizzas():
 
     try:
-        data = request.get_json()
-        print(data)
-        varNome = data.get('Nome')
-        varSabor = data.get('Sabor')
-        varTamanho = data.get('Tamanho')
-        varValor = data.get('Valor')  
-    
-        c.execute("INSERT INTO pizzas (nome,sabor,tamanho,valor) VALUES (?, ?, ?, ?)", (varNome, varSabor, varTamanho, varValor))
-        c.commit()
-        msg = "Record successfully added to database"
+        data = request.json
+        print("dataaaaa" + str(data))
+        for item in data:
+            print(item)
+            
+            varImg = item.get('img')
+            print(varImg)
+            varPrice = item.get('price')
+            print(varPrice)
+            varSabor = item.get('name')
+            print(varSabor)
+            varSizes = item.get('sizes')
+            print(varSizes)
+            varDescription = item.get('description')
+            print(varDescription)
+        
+            conn.execute("INSERT INTO pizzas (img,price,sabor, sizes, description) VALUES (?, ?, ?, ?, ?)", (varImg, varPrice, varSabor, varSizes, varDescription))
+        conn.commit()
             
     except sqlite3.IntegrityError as e:
         print("ENTROU NO ROLLBACK")
-        c.rollback()
+        conn.rollback()
         msg = "Error adding record: {e}"
-
+        return jsonify({
+            'message': 'Exception >>>' + msg
+        })
     finally:
-        c.close()
+        conn.close()
         return jsonify({'message': 'Pizza adicionada com sucesso!',
                         'statusCode': 200
                         })
@@ -52,16 +64,18 @@ def get_pizzas():
         cur = con.cursor()
     data = cur.execute('SELECT * FROM pizzas')
     return jsonify({
-            "data": data.fetchall()
+            "pizzas": data.fetchall()
     })
 
-# @app.route('/update/<string:table>', methods=['PUT'])
+# @app.route('/update/<string:id>', methods=['PUT'])
 # def update_data(table):
 #     data = request.get_json()
-#     set_columns_values = data.get('set')
-#     where_column = data.get('where_column')
-#     where_value = data.get('where_value')
-#     db.update_data(table, set_columns_values, where_column, where_value)
+#     idItem = data.get('id')
+    
+#     with sqlite3.connect('pizzaria.db') as con:
+#         cur = con.cursor()
+#         data = cur.execute('UPDATE pizzas SET WHERE id = ' + idItem)
+        
 #     return jsonify({'message': 'Data updated successfully'})
 
 # @app.route('/delete/<string:table>', methods=['DELETE'])
