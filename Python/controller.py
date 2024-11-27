@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS, cross_origin
 
 import sqlite3
@@ -82,7 +82,10 @@ def get_pizzas():
         # Convert the list of dictionaries to JSON and print it
         json_result = json.dumps(result)
         print(json_result)
-
+        response = make_response()
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        response.headers.add('Access-Control-Allow-Headers', "*")
+        response.headers.add('Access-Control-Allow-Methods', "*")
     return json_result
     
 # @app.route('/update/<string:id>', methods=['PUT'])
