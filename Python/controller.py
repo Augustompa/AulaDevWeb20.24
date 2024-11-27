@@ -28,7 +28,7 @@ c.execute('''CREATE TABLE IF NOT EXISTS pizzas (
 )''')
 
 
-@app.route('/insert', methods=['POST'])
+@app.route('/insertPizzas', methods=['POST'])
 @cross_origin()
 def adicionar_pizzas():
 
