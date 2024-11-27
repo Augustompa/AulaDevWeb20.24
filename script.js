@@ -183,6 +183,7 @@ function getPizzas()
       })
       .then(response => response.json())
       .then(data => {
+        console.log('RETORNO DO BACK >>>>> ',JSON.parse(JSON.stringify(data)));
         preencherPizzas(data)
       })
       .catch(error => console.error(error));
