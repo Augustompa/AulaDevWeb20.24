@@ -169,9 +169,10 @@ function updateCart(){
     }
 }
 
-function getPizzas()
+async function getPizzas()
 {
-    fetch('https://65s6ng97-5000.brs.devtunnels.ms/read',{
+    result = await fetch('https://65s6ng97-5000.brs.devtunnels.ms/read',{
+        mode: "cors",
         method: 'GET',
         headers: {
             'Access-Control-Allow-Origin': '*',
@@ -180,12 +181,11 @@ function getPizzas()
           'Content-Type': 'application/json'
         }
       })
-      .then(response =>response.json())
-      .then(responseJson =>{
-        preencherPizzas(JSON.stringify(responseJson));
-      })
-      .catch(error => console.log('EXCEPTION >>>>',error));
-
+      .then(response => response.json())
+      .then(responseJson => {
+        console.log(responseJson);
+        preencherPizzas(responseJson);
+      }).catch(error => console.log('EXCEPTION >>>>',error));
 }
 
 function preencherPizzas(pizzaJson){

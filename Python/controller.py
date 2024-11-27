@@ -85,7 +85,7 @@ def get_pizzas():
 
         # Convert the list of dictionaries to JSON and print it
         json_result = json.dumps(result)
-        print(json_result)
+        print(jsonify(json_result))
        
     return json_result
     
