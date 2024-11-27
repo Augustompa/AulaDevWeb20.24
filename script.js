@@ -181,7 +181,7 @@ function getPizzas()
           'Content-Type': 'application/json'
         }
       })
-      .then(response => response.json())
+      .then(response => response.get('pizzas').json())
       .then(data => {
         console.log('RETORNO DO BACK >>>>> ',JSON.parse(JSON.stringify(data)));
         preencherPizzas(data)
