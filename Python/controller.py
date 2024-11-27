@@ -25,6 +25,7 @@ c.execute('''CREATE TABLE IF NOT EXISTS pizzas (
 
 
 @app.route('/insert', methods=['POST'])
+@cross_origin()
 def adicionar_pizzas():
 
     try:
@@ -62,6 +63,7 @@ def adicionar_pizzas():
 
 
 @app.route('/read', methods=['GET'])
+@cross_origin()
 def get_pizzas():
     
     with sqlite3.connect('pizzaria.db') as con:
