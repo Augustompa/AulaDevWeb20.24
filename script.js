@@ -7,7 +7,7 @@ const c_all = (el)=>document.querySelectorAll(el);
 let cart = [];        //array carrinho de compras
 let modalQt = 1;     //quantidade de pizzas
 let modalKey = 0;   //identificação de qual pizza está selecionada
-
+let pizzaJson = [];
 //Mapear as pizzas
 //Clonar a estrutura e preencher as informações das pizzas
 getPizzas();
@@ -189,6 +189,7 @@ async function getPizzas()
 }
 
 function preencherPizzas(pizzaJson){
+    pizzaJson = pizzaJson;
     pizzaJson.map((item, index)=>{
         let pizzaItem = c('.models .pizza-item').cloneNode(true);
     
