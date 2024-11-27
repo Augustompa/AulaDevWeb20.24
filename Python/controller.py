@@ -62,7 +62,7 @@ def get_pizzas():
     
     with sqlite3.connect('pizzaria.db') as con:
         cur = con.cursor()
-    data = cur.execute('SELECT * FROM pizzas')
+    data = cur.execute('SELECT img,price,sabor, sizes, description FROM pizzas')
     return jsonify({
             "pizzas": data.fetchall()
     })
