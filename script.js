@@ -184,12 +184,12 @@ async function getPizzas()
       .then(response => response.json())
       .then(responseJson => {
         console.log(responseJson);
-        preencherPizzas(responseJson);
+        pizzaJson = responseJson;
+        preencherPizzas();
       }).catch(error => console.log('EXCEPTION >>>>',error));
 }
 
-function preencherPizzas(pizzaJson){
-    pizzaJson = pizzaJson;
+function preencherPizzas(){
     pizzaJson.map((item, index)=>{
         let pizzaItem = c('.models .pizza-item').cloneNode(true);
     
@@ -199,7 +199,7 @@ function preencherPizzas(pizzaJson){
         //Adicionar informações das pizzas
         pizzaItem.querySelector('.pizza-item--img img').src = item.img;
         pizzaItem.querySelector('.pizza-item--price').innerHTML = `R$ ${item.price.toFixed(2)}`;
-        pizzaItem.querySelector('.pizza-item--name').innerHTML = item.name;
+        pizzaItem.querySelector('.pizza-item--name').innerHTML = item.sabor;
         pizzaItem.querySelector('.pizza-item--desc').innerHTML = item.description;
     
         //Evento para clicar e abrir o modal
@@ -210,7 +210,7 @@ function preencherPizzas(pizzaJson){
             modalKey = key;
             //Preencher as informações das pizzas no modal
             c('.pizzaBig img').src = pizzaJson[key].img;
-            c('.pizzaInfo h1').innerHTML = pizzaJson[key].name;
+            c('.pizzaInfo h1').innerHTML = pizzaJson[key].sabor;
             c('.pizzaInfo--desc').innerHTML = pizzaJson[key].description;
             c('.pizzaInfo--actualPrice').innerHTML = `R$ ${pizzaJson[key].price.toFixed(2)}`;
             c('.pizzaInfo--size.selected').classList.remove('selected'); //Remove o item que está selecionado 
