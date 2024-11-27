@@ -172,7 +172,6 @@ function updateCart(){
 function getPizzas()
 {
     fetch('https://65s6ng97-5000.brs.devtunnels.ms/read',{
-        mode: 'no-cors',
         method: 'GET',
         headers: {
             'Access-Control-Allow-Origin': '*',
@@ -181,7 +180,8 @@ function getPizzas()
           'Content-Type': 'application/json'
         }
       })
-      .then(response =>response.json()).then(responseJson =>{
+      .then(response =>response.json())
+      .then(responseJson =>{
         preencherPizzas(JSON.stringify(responseJson));
       })
       .catch(error => console.log('EXCEPTION >>>>',error));

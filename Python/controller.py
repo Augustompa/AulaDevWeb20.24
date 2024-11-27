@@ -1,8 +1,12 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
+
 import sqlite3
 import json
 
 app = Flask(__name__)
+cors = CORS(app) 
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 # Conexão com o banco de dados SQLite
 conn = sqlite3.connect('pizzaria.db', check_same_thread=False)
