@@ -240,23 +240,52 @@ function preencherPizzas(){
 
 function insertPizza()
 {
-    fetch('http://localhost:5000/insert',{
-        mode: 'no-cors',
-        method: 'POST',
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'GET,PUT,POST,OPTIONS',
-            'Access-Control-Allow-Headers':'Content-Type',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            Nome: 'teste',
-            Sabor: 'calabresa',
-            Valor: 35.99,
-            Tamanho: 'M'
+    let request = {};
+    console.log('cart >>' , JSON.parse(JSON.stringify(cart)));
+
+    for(let i in cart){
+
+        let pizzaItem = pizzaJson.find((item)=>item.id == cart[i].id);
+
+        switch(cart[i].size){
+            case 0:
+                pizzaSizeName = 'P';
+                break;
+            case 1:
+                pizzaSizeName = 'M';
+                break;
+            case 2:
+                pizzaSizeName = 'G';
+                break;
+        }
+
+        request.id =  cart[i].id;
+        request.qtt = cart[i].qt;
+        request.size = pizzaSizeName;
+        request.price = pizzaItem.price;
+        request.description = pizzaItem.description;
+        console.log('request >>' , JSON.parse(JSON.stringify(request)));
+        postOrder(request);
+    }
+    
+
+    function postOrder(requestItem){
+        console.log('request dentro do postOrder>>' , JSON.parse(JSON.stringify(requestItem)));
+
+        fetch('https://65s6ng97-5000.brs.devtunnels.ms/insertPedido',{
+            mode: "cors",
+            method: 'POST',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,OPTIONS',
+                'Access-Control-Allow-Headers':'Content-Type',
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestItem)
         })
-      })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.error(error));
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
 }
+    }
+   

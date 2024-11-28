@@ -27,6 +27,54 @@ c.execute('''CREATE TABLE IF NOT EXISTS pizzas (
 
 )''')
 
+c.execute("DROP TABLE IF EXISTS pedidos")
+
+# Criando a tabela de pedidos se não existir
+c.execute('''CREATE TABLE IF NOT EXISTS pedidos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    pizza INTEGER,
+    price DOUBLE,
+    qtt INTEGER,
+    sabor TEXT,
+    size TEXT,
+    description TEXT,
+    FOREIGN KEY (pizza) REFERENCES pizzas (id)
+    
+)''')
+
+@app.route('/insertPedido', methods=['POST'])
+@cross_origin()
+def adicionar_pedido():
+
+    try:
+        print("dataaaaa" + str(request))
+        data = request.json
+        print("dataaaaa" + str(data))
+        
+        varPizza = data.get('id')
+        print(varPizza)
+        varPrice = data.get('price')
+        print(varPrice)
+        varSize = data.get('size')
+        print(varSize)
+        varDescription = data.get('description')
+        print(varDescription)
+        
+        conn.execute("INSERT INTO pedidos (pizza, price, size, description) VALUES (?, ?, ?, ?)", (varPizza, varPrice, varSize, varDescription))
+        conn.commit()
+            
+    except sqlite3.IntegrityError as e:
+        print("ENTROU NO ROLLBACK")
+        conn.rollback()
+        msg = "Error adding record: {e}"
+        return jsonify({
+            'message': 'Exception >>>' + msg
+        })
+    finally:
+        conn.close()
+        return jsonify({'message': 'Pedido criado com sucesso!',
+                        'statusCode': 200
+                        })
 
 @app.route('/insertPizzas', methods=['POST'])
 @cross_origin()
