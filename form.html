@@ -40,8 +40,16 @@
 <body>
     <h1>Feedback Form</h1>
     <form id="feedback-form">
-        <label for="feedback">Diga-nos oque achou das nossas pizzas:</label>
-        <textarea id="feedback" name="feedback"></textarea>
+        <label for="feedback">Seu nome</label>
+        <textarea id="feedback" name="name"></textarea>
+        <label for="feedback">Seu telefone</label>
+        <textarea id="feedback" name="phone"></textarea>
+        <label for="feedback">Sabor que sentiu falta:</label>
+        <textarea id="feedback" name="pizzaName"></textarea>
+        <label for="feedback">Tamanho que gostaria:</label>
+        <textarea id="feedback" name="size"></textarea>
+        <label for="feedback">Valor que gostaria pagar:</label>
+        <textarea id="feedback" name="value"></textarea>
         <button type="submit">Enviar</button>
     </form>
 
@@ -54,12 +62,11 @@
             const feedback = document.getElementById('feedback').value;
             console.log('Feedback:', feedback);
 
-            alert('Thank you for your feedback!');
+            alert('Obrigado pelo seu comentário');
 
             document.getElementById('feedback').value = '';
         });
     </script>
-    <script type="text/javascript" src="pizzas.js"></script>
     <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
